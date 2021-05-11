@@ -1,7 +1,6 @@
 .box {
   background-color: rgb(61, 61, 61);
   padding: 1rem;
-  margin-top: 1rem;
 }
 
 .item {
@@ -9,6 +8,7 @@
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
+  font-weight: 900;
 }
 
 .hide {
@@ -17,4 +17,19 @@
 
 .drag-over {
   background-color: lightslategray;
+}
+
+.box-name {
+  margin-top: 1vh;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.box-container {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  cursor: pointer;
 }

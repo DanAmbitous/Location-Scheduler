@@ -14,7 +14,7 @@ function dragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id)
 
   setTimeout(() => {
-    document.querySelector("idle").append(draggableItem)
+    document.querySelector("#idle").append(draggableItem)
   }, 0)
 }
 
@@ -23,27 +23,24 @@ document.addEventListener('click', event => {
   
   switch(element) {
     case "add-worker":
-      dynamicElements()
+      dynamicDragElements()
+      break
+    case "add-location":
+      dynamicContainerElements()
       break
   }
 })
 
-function dynamicElements() {
-  const boxes = document.querySelectorAll('.box')
-
-  boxes.forEach(box => {
-    box.addEventListener('dragenter', dragEnter)
-    box.addEventListener('dragover', dragOver)
-    box.addEventListener('dragleave', dragLeave)
-    box.addEventListener('drop', drop)
-  });
+function dynamicDragElements() {
+  boxIterator()
 
   let array = []
 
-  const newDiv = document.createElement('div')
+  const newDiv = document.createElement('input')
   newDiv.setAttribute('class', 'item')
   newDiv.setAttribute('id', 'worker-2')
   newDiv.setAttribute('draggable', 'true')
+  newDiv.setAttribute('placeholder', 'Type a name here')
   newDiv.textContent = "Worker 2"
   document.getElementById('idle').append(newDiv)
 
@@ -52,6 +49,21 @@ function dynamicElements() {
   array.forEach(div => {
     div.addEventListener('dragstart', dragStart)
   })
+}
+
+function dynamicContainerElements() {
+  boxIterator()
+
+  const newBoxContainer = document.createElement('div')
+  newBoxContainer.setAttribute('class', 'box-container')
+  const inputElement = document.createElement('input')
+  inputElement.setAttribute('class', 'box-name')
+  inputElement.setAttribute('placeholder', 'Type in the name of the location here')
+  const newContainer = document.createElement('div')
+  newContainer.setAttribute('class', 'box')
+  newBoxContainer.append(inputElement)
+  newBoxContainer.append(newContainer)
+  document.body.append(newBoxContainer)
 }
 
 function dragEnter(event) {
@@ -77,4 +89,15 @@ function drop(event) {
   event.target.append(draggable)
 
   draggable.classList.remove('hide')
+}
+
+function boxIterator() {
+  const boxes = document.querySelectorAll('.box')
+
+  boxes.forEach(box => {
+    box.addEventListener('dragenter', dragEnter)
+    box.addEventListener('dragover', dragOver)
+    box.addEventListener('dragleave', dragLeave)
+    box.addEventListener('drop', drop)
+  });
 }
