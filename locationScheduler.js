@@ -31,14 +31,18 @@ document.addEventListener('click', event => {
   }
 })
 
+let i = 0;
+
 function dynamicDragElements() {
   boxIterator()
 
   let array = []
 
+  i++
+
   const newDiv = document.createElement('input')
   newDiv.setAttribute('class', 'item')
-  newDiv.setAttribute('id', 'worker-2')
+  newDiv.setAttribute('id', `worker-${i}`)
   newDiv.setAttribute('draggable', 'true')
   newDiv.setAttribute('placeholder', 'Type a name here')
   newDiv.textContent = "Worker 2"
@@ -64,6 +68,30 @@ function dynamicContainerElements() {
   newBoxContainer.append(inputElement)
   newBoxContainer.append(newContainer)
   document.body.append(newBoxContainer)
+
+  dynamicDragElementsHelper()
+}
+
+function dynamicDragElementsHelper() {
+  boxIterator()
+
+  let array = []
+
+  const newDiv = document.createElement('input')
+  newDiv.setAttribute('class', 'item')
+  newDiv.setAttribute('id', 'worker-2')
+  newDiv.setAttribute('draggable', 'true')
+  newDiv.setAttribute('placeholder', 'Type a name here')
+  newDiv.textContent = "Worker 2"
+  document.getElementById('idle').append(newDiv)
+
+  array.push(newDiv)
+
+  array.forEach(div => {
+    div.addEventListener('dragstart', dragStart)
+  })
+
+  array.forEach(div => div.remove())
 }
 
 function dragEnter(event) {
