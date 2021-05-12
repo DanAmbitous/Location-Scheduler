@@ -75,6 +75,9 @@ function dynamicContainerElements() {
 
   const locationSection = document.querySelector('.prototype-container').cloneNode(true)
 
+  locationSection.querySelector('.box').style.backgroundColor = 'rgb(61, 61, 61)'
+  locationSection.querySelector('.container-functionalities').querySelector('.color-picker').value = '#3d3d3d'
+
   locationSection.querySelector('.item').remove()
 
   const optionSection = locationSection.querySelector('.container-functionalities')
