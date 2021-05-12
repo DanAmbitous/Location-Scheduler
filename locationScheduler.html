@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="locationScheduler.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" defer></script>
   <script src="locationScheduler.js" defer></script>
   <title>Location Scheduler</title>
 </head>
@@ -14,10 +15,13 @@
     <button id="add-worker">Add Worker</button>
   </div>
   <div class="drop-targets">
-    <div class="box-container">
+    <div class="box-container prototype-container">
       <input type="text" class="box-name" placeholder="Type in the name of the location here">
       <div class="box" id="idle">
-        <input id="worker-1" class="item" draggable="true" placeholder="Type in a name here">
+
+      </div>
+      <div class="container-functionalities prototype-container-functionalites">
+        <input type="color" class="color-picker" value="#3d3d3d">
       </div>
     </div>
 
@@ -26,12 +30,22 @@
       <div class="box">
         
       </div>
+      <div class="container-functionalities">
+        <div class="container-functionalities">
+          <button class="remove">Remove</button>
+          <input type="color" class="color-picker" value="#3d3d3d">
+        </div>
+      </div>
     </div>
    
     <div class="box-container">
     <input type="text" class="box-name" placeholder="Type in the name of the location here">
       <div class="box">
         
+      </div>
+      <div class="container-functionalities">
+        <button class="remove">Remove</button>
+        <input type="color" class="color-picker" value="#3d3d3d">
       </div>
     </div>
   </div>

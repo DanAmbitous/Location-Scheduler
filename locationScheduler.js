@@ -1,15 +1,3 @@
-const draggableItem = document.querySelector('.item')
-const boxes = document.querySelectorAll('.box')
-
-draggableItem.addEventListener('dragstart', dragStart)
-
-boxes.forEach(box => {
-  box.addEventListener('dragenter', dragEnter)
-  box.addEventListener('dragover', dragOver)
-  box.addEventListener('dragleave', dragLeave)
-  box.addEventListener('drop', drop)
-})
-
 function dragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id)
 
@@ -31,6 +19,34 @@ document.addEventListener('click', event => {
   }
 })
 
+document.addEventListener('click', event => {
+  const element = event.target.className
+  
+  switch(element) {
+    case "remove":
+      removeContainer(event)
+      break
+  }
+}) /* mousedown */
+
+document.addEventListener('mousedown', event => {
+  const element = event.target.className
+  
+  switch(element) {
+    case "color-picker":
+      colorSetter(event)
+      break
+  }
+})
+
+function removeContainer(event) {
+  const container = event.target.closest('.box-container');
+  $(container).fadeOut()
+  setTimeout(() => {
+    container.remove()
+  }, 1000)
+}
+
 let i = 0;
 
 function dynamicDragElements() {
@@ -45,7 +61,6 @@ function dynamicDragElements() {
   newDiv.setAttribute('id', `worker-${i}`)
   newDiv.setAttribute('draggable', 'true')
   newDiv.setAttribute('placeholder', 'Type a name here')
-  newDiv.textContent = "Worker 2"
   document.getElementById('idle').append(newDiv)
 
   array.push(newDiv)
@@ -58,16 +73,19 @@ function dynamicDragElements() {
 function dynamicContainerElements() {
   boxIterator()
 
-  const newBoxContainer = document.createElement('div')
-  newBoxContainer.setAttribute('class', 'box-container')
-  const inputElement = document.createElement('input')
-  inputElement.setAttribute('class', 'box-name')
-  inputElement.setAttribute('placeholder', 'Type in the name of the location here')
-  const newContainer = document.createElement('div')
-  newContainer.setAttribute('class', 'box')
-  newBoxContainer.append(inputElement)
-  newBoxContainer.append(newContainer)
-  document.body.append(newBoxContainer)
+  /* cloneNode(boolean) - This clones an HTML element, if the boolean is set to true it'll clone the child elements as well (Including the text content) else if not (the default way) it won't only the node itself will be cloned */
+
+  const locationSection = document.querySelector('.prototype-container').cloneNode(true)
+
+  const optionSection = locationSection.querySelector('.container-functionalities')
+
+  const removeButton = document.createElement('button')
+  removeButton.setAttribute('class', 'remove')
+  removeButton.textContent = "Remove"
+
+  optionSection.insertBefore(removeButton, optionSection.querySelector('.color-picker'))
+
+  document.body.append(locationSection)
 
   dynamicDragElementsHelper()
 }
@@ -79,7 +97,7 @@ function dynamicDragElementsHelper() {
 
   const newDiv = document.createElement('input')
   newDiv.setAttribute('class', 'item')
-  newDiv.setAttribute('id', 'worker-2')
+  newDiv.setAttribute('id', 'worker-helper')
   newDiv.setAttribute('draggable', 'true')
   newDiv.setAttribute('placeholder', 'Type a name here')
   newDiv.textContent = "Worker 2"
@@ -117,6 +135,18 @@ function drop(event) {
   event.target.append(draggable)
 
   draggable.classList.remove('hide')
+}
+
+function colorSetter(event) {
+  const colorValue = event.target.value 
+
+  const container = event.target
+
+
+
+  console.log(container.closest('.box'))
+
+  // container.style.backgroundColor = colorValue
 }
 
 function boxIterator() {
