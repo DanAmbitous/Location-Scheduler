@@ -1,9 +1,7 @@
+dynamicContainerElements()
+
 function dragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id)
-
-  setTimeout(() => {
-    document.querySelector("#idle").append(draggableItem)
-  }, 0)
 }
 
 document.addEventListener('click', event => {
@@ -27,13 +25,13 @@ document.addEventListener('click', event => {
       removeContainer(event)
       break
   }
-}) /* mousedown */
+})
 
-document.addEventListener('mousedown', event => {
+document.addEventListener('click', event => {
   const element = event.target.className
   
   switch(element) {
-    case "color-picker":
+    case "color-picker":    
       colorSetter(event)
       break
   }
@@ -76,6 +74,8 @@ function dynamicContainerElements() {
   /* cloneNode(boolean) - This clones an HTML element, if the boolean is set to true it'll clone the child elements as well (Including the text content) else if not (the default way) it won't only the node itself will be cloned */
 
   const locationSection = document.querySelector('.prototype-container').cloneNode(true)
+
+  locationSection.querySelector('.item').remove()
 
   const optionSection = locationSection.querySelector('.container-functionalities')
 
@@ -138,15 +138,18 @@ function drop(event) {
 }
 
 function colorSetter(event) {
-  const colorValue = event.target.value 
+  const color = event.target.value
 
-  const container = event.target
+  let box = event.target.parentElement.previousSibling.parentElement.querySelector('.box')
 
+  if (box == null) {
+    box = event.target.parentElement.previousSibling.parentElement.parentElement.querySelector('.box')
+  }
 
+  console.log(box)
 
-  console.log(container.closest('.box'))
-
-  // container.style.backgroundColor = colorValue
+  box.classList.remove('box-color')
+  box.style.backgroundColor = color
 }
 
 function boxIterator() {
