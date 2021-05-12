@@ -2,6 +2,8 @@ dynamicContainerElements()
 
 function dragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id)
+
+  console.log(event)
 }
 
 document.addEventListener('click', event => {
@@ -13,6 +15,9 @@ document.addEventListener('click', event => {
       break
     case "add-location":
       dynamicContainerElements()
+      break
+    case "remove-all":
+      removeAllButton()
       break
   }
 })
@@ -79,6 +84,7 @@ function dynamicContainerElements() {
   locationSection.querySelector('.container-functionalities').querySelector('.color-picker').value = '#3d3d3d'
 
   locationSection.querySelector('.item').remove()
+  locationSection.removeAttribute('id', 'idle-container')
 
   const optionSection = locationSection.querySelector('.container-functionalities')
 
@@ -153,6 +159,27 @@ function colorSetter(event) {
 
   box.classList.remove('box-color')
   box.style.backgroundColor = color
+}
+
+function removeAllButton() {
+  const allItems = document.querySelectorAll('.item')
+  const allContainers = document.querySelectorAll('.box-container')
+
+  for (item of allItems) {
+    if (item.id === 'worker-initial') {
+      continue
+    } else {
+      item.remove()
+    }
+  }
+
+  for (container of allContainers) {
+    if (container.id === 'idle-container') {
+      continue
+    } else {
+      container.remove()
+    }
+  }
 }
 
 function boxIterator() {

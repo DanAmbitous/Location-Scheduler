@@ -48,3 +48,18 @@ button {
 .new-box-color {
   background-color: var(--background-box-color, rgb(61, 61, 61));
 }
+
+.dragging-rotation {
+  transform: rotate(90deg);
+}
+
+.remove, #remove-all {
+  background-color: red;
+  color: white;
+  border:0;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+}

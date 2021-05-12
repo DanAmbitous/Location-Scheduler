@@ -11,11 +11,15 @@
 </head>
 <body>
   <div class="input-container">
-    <button id="add-location">Add Location</button>
-    <button id="add-worker">Add Worker</button>
+    <div class="additions">
+      <button id="add-location">Add Location</button>
+      <button id="add-worker">Add Worker</button>
+    </div>
+  
+    <button id="remove-all" title="removes all containers and items">Remove All</button>
   </div>
   <div class="drop-targets">
-    <div class="box-container prototype-container">
+    <div class="box-container prototype-container" id="idle-container">
       <input type="text" class="box-name" placeholder="Type in the name of the location here">
       <div class="box box-color" id="idle">
         <input class="item" id="worker-initial" draggable="true" placeholder="Type a name here" style="display: none;">
