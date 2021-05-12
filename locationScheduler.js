@@ -27,7 +27,7 @@ document.addEventListener('click', event => {
   }
 })
 
-document.addEventListener('click', event => {
+document.addEventListener('input', event => {
   const element = event.target.className
   
   switch(element) {
