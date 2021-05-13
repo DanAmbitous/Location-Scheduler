@@ -10,6 +10,10 @@
   <title>Location Scheduler</title>
 </head>
 <body>
+  <div class="account-holder">
+    <button id="account-button">Account</button>
+  </div>
+  
   <div class="input-container">
     <div class="additions">
       <button id="add-location">Add Location</button>
@@ -53,6 +57,21 @@
         <input type="color" class="color-picker" value="#3d3d3d">
       </div>
     </div>
+  </div>
+
+  <div class="modal-account-information">
+    <h1>Account Information</h1>
+    <table>
+      <th>Name</th>
+      <tr>
+        <td id="username"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="modal-user-information">
+    <input type="text" id="username-input" placeholder="username">
+    <button id="submit">Submit</button>
   </div>
 </body>
 </html>

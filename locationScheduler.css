@@ -77,3 +77,8 @@ button {
   display: inline-block;
   padding: 1vw;
 }
+
+.modal-user-information {
+  box-shadow: 1vw 1vw 5vw gray;
+  padding-bottom: 30vw;
+}

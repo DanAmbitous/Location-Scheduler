@@ -1,3 +1,9 @@
+accountInformation()
+
+setTimeout(() => {
+  accountInformation()
+}, 1)
+
 function dragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id)
 
@@ -17,6 +23,8 @@ document.addEventListener('click', event => {
     case "remove-all":
       removeAllButton()
       break
+    case "submit":
+      initialAccountInformation()
   }
 })
 
@@ -205,6 +213,17 @@ function removeAllButton() {
       container.remove()
     }
   }
+}
+
+function initialAccountInformation() {
+  const name = document.querySelector('#username-input').value
+  localStorage.setItem('username', name)
+
+  accountInformation()
+}
+
+function accountInformation() {
+  document.querySelector('#username').textContent = localStorage.getItem('username')
 }
 
 function boxIterator() {
