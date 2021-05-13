@@ -78,7 +78,8 @@ button {
   padding: 1vw;
 }
 
-.modal-user-information {
+#modal-user-information {
   box-shadow: 1vw 1vw 5vw gray;
   padding-bottom: 30vw;
+  display: none;
 }

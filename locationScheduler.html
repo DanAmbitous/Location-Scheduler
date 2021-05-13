@@ -59,19 +59,22 @@
     </div>
   </div>
 
-  <div class="modal-account-information">
-    <h1>Account Information</h1>
-    <table>
-      <th>Name</th>
-      <tr>
-        <td id="username"></td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="modal-user-information">
+  <div id="modal-user-information">
     <input type="text" id="username-input" placeholder="username">
+    <input type="text" id="password-input" placeholder="password">
     <button id="submit">Submit</button>
+
+    <div class="modal-account-information">
+      <h1>Account Information</h1>
+      <table>
+        <th>Name</th>
+        <th>Password</th>
+        <tr>
+          <td id="username"></td>
+          <td id="password"></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </body>
 </html>

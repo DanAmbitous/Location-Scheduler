@@ -1,7 +1,7 @@
-accountInformation()
+initialAccountInformation()
 
 setTimeout(() => {
-  accountInformation()
+  initialAccountInformation()
 }, 1)
 
 function dragStart(event) {
@@ -25,6 +25,10 @@ document.addEventListener('click', event => {
       break
     case "submit":
       initialAccountInformation()
+      break
+    case "account-button":
+      accountToggler()
+      break
   }
 })
 
@@ -217,13 +221,32 @@ function removeAllButton() {
 
 function initialAccountInformation() {
   const name = document.querySelector('#username-input').value
+  const password = document.querySelector('#password-input').value
+
   localStorage.setItem('username', name)
+  localStorage.setItem('password', password)
 
   accountInformation()
 }
 
+let index = 0;
+
+function accountToggler() {
+  console.log(index)
+
+  if (index % 2 === 0) {
+    document.querySelector('#modal-user-information').style.display = "block"
+  } else {
+    document.querySelector('#modal-user-information').style.display = "none"
+  }
+
+  index++
+}
+
 function accountInformation() {
+  console.log('asfds')
   document.querySelector('#username').textContent = localStorage.getItem('username')
+  document.querySelector('#password').textContent = localStorage.getItem('password')
 }
 
 function boxIterator() {
