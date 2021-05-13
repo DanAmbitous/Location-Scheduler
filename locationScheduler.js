@@ -1,5 +1,3 @@
-dynamicContainerElements()
-
 function dragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id)
 
@@ -59,11 +57,22 @@ function dynamicDragElements() {
 
   i++
 
-  const newDiv = document.createElement('input')
-  newDiv.setAttribute('class', 'item')
-  newDiv.setAttribute('id', `worker-${i}`)
+  const newDiv = document.createElement('div')
+  newDiv.setAttribute('class', 'item-container')
   newDiv.setAttribute('draggable', 'true')
-  newDiv.setAttribute('placeholder', 'Type a name here')
+  newDiv.setAttribute('id', `worker-${i}`)
+
+  const newInput = document.createElement('input')
+  newInput.setAttribute('class', 'item')
+  newInput.setAttribute('placeholder', 'Type a name here')
+
+  const removeButton = document.createElement('button')
+  removeButton.setAttribute('class', 'remove-item')
+  removeButton.textContent = "Remove Item"
+
+  newDiv.append(newInput)
+  newDiv.append(removeButton)
+
   document.getElementById('idle').append(newDiv)
 
   array.push(newDiv)
@@ -79,12 +88,23 @@ function dynamicContainerElements() {
   /* cloneNode(boolean) - This clones an HTML element, if the boolean is set to true it'll clone the child elements as well (Including the text content) else if not (the default way) it won't only the node itself will be cloned */
 
   const locationSection = document.querySelector('.prototype-container').cloneNode(true)
+  
+  let removeButtons = Array.from(locationSection.querySelectorAll('.remove-item'))
 
+  removeButtons.forEach(button => button.remove())
+
+  localStorage.setItem('value', locationSection)
+  
   locationSection.querySelector('.box').style.backgroundColor = 'rgb(61, 61, 61)'
   locationSection.querySelector('.container-functionalities').querySelector('.color-picker').value = '#3d3d3d'
 
-  locationSection.querySelector('.item').remove()
   locationSection.removeAttribute('id', 'idle-container')
+  locationSection.removeAttribute('class', 'prototype-container')
+  locationSection.querySelector('.box').removeAttribute('id', 'idle')
+
+  let items = Array.from(locationSection.querySelectorAll('.item'))
+  
+  items.forEach(item => item.remove())
 
   const optionSection = locationSection.querySelector('.container-functionalities')
 
@@ -164,6 +184,7 @@ function colorSetter(event) {
 function removeAllButton() {
   const allItems = document.querySelectorAll('.item')
   const allContainers = document.querySelectorAll('.box-container')
+  const removeItem = document.querySelectorAll('.remove-item')
 
   for (item of allItems) {
     if (item.id === 'worker-initial') {
@@ -171,6 +192,10 @@ function removeAllButton() {
     } else {
       item.remove()
     }
+  }
+
+  for (removeButton of removeItem) {
+    removeButton.remove()
   }
 
   for (container of allContainers) {

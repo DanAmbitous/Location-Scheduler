@@ -15,14 +15,17 @@
       <button id="add-location">Add Location</button>
       <button id="add-worker">Add Worker</button>
     </div>
-  
+    <!--  -->
     <button id="remove-all" title="removes all containers and items">Remove All</button>
   </div>
   <div class="drop-targets">
     <div class="box-container prototype-container" id="idle-container">
       <input type="text" class="box-name" placeholder="Type in the name of the location here">
       <div class="box box-color" id="idle">
-        <input class="item" id="worker-initial" draggable="true" placeholder="Type a name here" style="display: none;">
+        <div class="item-container item" style="display: none;">
+          <input class="item" id="worker-initial" draggable="true" placeholder="Type a name here">
+          <button class="remove-item">Remove Item</button>
+        </div>
       </div>
       <div class="container-functionalities prototype-container-functionalites">
         <input type="color" class="color-picker" value="#3d3d3d">

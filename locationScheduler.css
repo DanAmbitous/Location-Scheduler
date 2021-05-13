@@ -63,3 +63,17 @@ button {
   display: flex;
   justify-content: space-between;
 }
+
+.item-container {
+  display: inline;
+  padding: 0;
+  border: 0;
+}
+
+.remove-item {
+  background-color: red;
+  color: white;
+  border: 0;
+  display: inline-block;
+  padding: 1vw;
+}
